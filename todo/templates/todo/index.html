@@ -1,0 +1,17 @@
+<h1>To-Do List</h1>
+
+<form action="{% url 'todo:todo_create' %}" method="post">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit">Save</button>
+</form>
+
+<ul>
+    {% for todo in todo_list %}
+        <li>
+            {{ todo.title }} - {{ todo.llm_response }}
+            <a href="{% url 'todo:todo_done' todo.id %}">Mark finished</a>
+        </li>
+    {% endfor %}
+</ul>
+
