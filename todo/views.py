@@ -3,12 +3,14 @@ from .models import Todo
 from .forms import TodoForm
 import os
 import requests
+from dotenv import load_dotenv
+load_dotenv()
 
 def query_huggingface_api(prompt, retries=5):
     # Replace 'your_hugging_face_api_token' with your actual Hugging Face API token
     API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
     headers = {
-        "Authorization": "Bearer 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",
+        "Authorization": "Bearer " + os.getenv("HUGGINGFACE_API_KEY"),
         # "x-wait-for-model": "true"
     }
 
